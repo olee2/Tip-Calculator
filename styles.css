@@ -149,14 +149,11 @@ input[type=number]:focus{
   border: 2px solid var(--clr-strong-cyan);
 }
 
-input[type=number]
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
 
 input[type="radio"]{
   display: none;
@@ -185,7 +182,6 @@ input[type="radio"]:checked+label {
 }
 
 .data{
-
   gap: 2rem;
   flex: 1;
 }
