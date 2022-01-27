@@ -20,12 +20,12 @@
     <form class="data flex column">
       <div class="flex column">
         <h2>Bill</h2>
-        <input type="number" id="bill" class="input-background"> 
+        <input type="number" id="bill" class="input-background number" placeholder="0"> 
       </div>
       <div>
         <h2>Select Tip %</h2>
         <div class="grid">
-          <input type="radio" id="5" name="percent" checked>
+          <input type="radio" id="5" name="percent" >
           <label for="5" class="tip flex justify-center align-center" >5%</label> 
           <input type="radio" id="10" name="percent">
           <label for="10" class="tip flex justify-center align-center">10%</label>
@@ -35,12 +35,15 @@
           <label for="25" class="tip flex justify-center align-center">25%</label>
           <input type="radio" id="50" name="percent">
           <label for="50" class="tip flex justify-center align-center">50%</label>
-          <input type="number" id="custom" class="tip" placeholder="Custom" onclick="uncheck()">
+          <input type="number" id="custom" class="tip number" placeholder="Custom" onclick="uncheck()">
         </div>
       </div>
       <div class="flex column">
-        <h2>Number of People</h2>
-        <input type="number" id="people" class="input-background" min="1" max="100" required>
+        <div class="flex justify-between">
+          <h2>Number of People</h2>
+          <p class="error"></p>
+        </div>
+        <input type="number" id="people" class="input-background number" placeholder="0" min="0">
       </div>
     </form>
     <div class="result bg-dark flex column justify-between">
