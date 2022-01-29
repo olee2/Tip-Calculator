@@ -1,4 +1,3 @@
-
 // Uncheck radio button when custom input is clicked
 
 function uncheck(){
@@ -14,6 +13,19 @@ function radioChoosen(){
     document.getElementById("custom").value = "";
 }
 
+function buttonState(tip, bill, people){
+    let btn = document.querySelector(".btn");
+    isInput = () => Boolean(!tip && !bill && !people);
+
+    if(isInput()){
+        btn.disabled = true;
+        btn.classList.replace("bg-cyan", "btn-disabled");
+    }else{
+        btn.disabled = false;
+        btn.classList.replace("btn-disabled", "bg-cyan");
+    }
+}
+
 // Return the choosen tip %
 
 function percentage(){
@@ -21,7 +33,6 @@ function percentage(){
         let radio = Number(document.querySelector("input[name='percent']:checked").id);
         return radio / 100;
     }
-
     catch{
         let custom = Number(document.getElementById("custom").value);
         if(custom){
@@ -30,50 +41,44 @@ function percentage(){
     }
 }
 
-function people() {
+// Validate the input for Bill || People
+// If valid return the input
+// If zero display error
+// If other input return 0
 
-    let people = document.querySelector("#people"),
-        error = document.querySelector(".error"),
-        num = parseInt(people.value);
-        
+function validateInput(numInput, errorContainer) {
+    numInput = numInput;
+    error = errorContainer;
+    let num = parseInt(numInput.value);
+
     if(num === 0){
         error.innerHTML = "Can't be Zero";
-        people.classList.replace("number", "number-error")
+        numInput.classList.replace("number", "number-error")
         return 0;
 
     }else if(isNaN(num)){
-        people.classList.replace("number-error", "number")
+        numInput.classList.replace("number-error", "number")
         error.innerHTML = "";
         return 0;
     }
-    people.classList.replace("number-error", "number")
+
+    numInput.classList.replace("number-error", "number")
     error.innerHTML = "";
-    people.value = num;
+    numInput.value = num;
 
     return num;
-    
 }
 
-function billSum(){
-
-    let bill = document.querySelector("#bill");
-    let num = Number(bill.value);
-
-    if(num <= 0 || isNaN(num)){
-        bill.value = 0;
-        console.log(num);
-        return 0;
-    }
-    bill.value = num;
-    return num;
-}
+// Calculate and display results
 
 function calculate(){
-    let bill = billSum(),
-        numPeople = people(),
+    let bill = validateInput(document.querySelector("#bill"), document.querySelector(".bill-error")),
+        numPeople = validateInput(document.querySelector("#people"), document.querySelector(".people-error")),
         tip = percentage(),
         tipPerson = (bill * tip) / numPeople,
         totalPerson = bill / numPeople + tipPerson;
+
+    buttonState(tip, bill, numPeople);
 
     if(tipPerson === Infinity || isNaN(tipPerson)){
         document.querySelector("#tipPerson").innerHTML = "$0.00";
@@ -82,11 +87,6 @@ function calculate(){
         document.querySelector("#tipPerson").innerHTML = `$${tipPerson.toFixed(2)}`;
         document.querySelector("#totalPerson").innerHTML = `$${totalPerson.toFixed(2)}`;
     }
-    
-
-   
-
-
 }
 
 let radios = document.querySelectorAll("input[type='radio']");

@@ -239,6 +239,11 @@ p{
   margin-top: 2rem;
 }
 
+.btn-disabled{
+  background-color: hsl(183, 100%, 22%);
+  color: hsl(183, 100%, 15%);
+}
+
 .error{
   color: orange;
 }

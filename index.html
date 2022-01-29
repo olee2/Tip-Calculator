@@ -19,7 +19,10 @@
   <div class="container flex bg-white">
     <form class="data flex column">
       <div class="flex column">
-        <h2>Bill</h2>
+        <div class="flex justify-between">
+          <h2>Bill</h2>
+          <p class="bill-error error"></p>
+        </div>
         <input type="number" id="bill" class="input-background number" placeholder="0"> 
       </div>
       <div>
@@ -41,7 +44,7 @@
       <div class="flex column">
         <div class="flex justify-between">
           <h2>Number of People</h2>
-          <p class="error"></p>
+          <p class="people-error error"></p>
         </div>
         <input type="number" id="people" class="input-background number" placeholder="0" min="0">
       </div>
@@ -64,7 +67,7 @@
         </div>
       </div>
       <div></div>
-      <input type="button" class="btn bg-cyan" value="Reset" >
+      <input type="button" class="btn btn-disabled" value="RESET" disabled="true">
     </div>
   </div>
   <div class="attribution">
