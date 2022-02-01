@@ -5,7 +5,7 @@ let bill,
     tipPerson,
     totalPerson;
 
-// Uncheck radio button when custom input is clicked
+// Uncheck radio button when custom tip input is clicked
 
 function uncheck(){
     let radios = document.querySelectorAll("input[name='percent']");
@@ -18,7 +18,7 @@ function uncheck(){
     });
 }
 
-// Remove value from custom field if a radio button is choosen 
+// Remove value from custom tip field if a radio button is choosen 
 
 function radioChoosen(){
     document.getElementById("custom").value = "";
@@ -44,32 +44,31 @@ function percentage(){
         return radio / 100;
     }
     catch{
-        let custom = Number(document.getElementById("custom").value);
+        let custom = validateInput(document.getElementById("custom"));
         if(custom){
             return custom / 100;
         }
     }
 }
 
-//Reset all values when button i clicked
-btn.onclick = function() {
-    document.querySelector("#bill").value = "";
-    document.querySelector("#people").value = "";
-    radioChoosen();
-    uncheck();
-    calculate();
-}
-
-
-// Validate the input for Bill || People
+// Validate the number inputs
 // If valid return the input
 // If zero display error
 // If other input return 0
 
-function validateInput(numInput, errorContainer) {
+function validateInput(numInput, errorContainer="") {
+    
+    const reg = /\d/g;
     numInput = numInput;
     error = errorContainer;
-    let num = parseInt(numInput.value);
+    let num; 
+
+    try {
+        num = numInput.value.match(reg).join("");
+        num = Number(num);
+    } catch{
+        num = "";
+    }
 
     if(num === 0){
         error.innerHTML = "Can't be Zero";
@@ -111,6 +110,16 @@ function calculate(){
     }
 }
 
+function reset() {
+    document.querySelector("#bill").value = "";
+    document.querySelector("#people").value = "";
+    radioChoosen();
+    uncheck();
+    calculate();
+}
+//Reset all values when reset button is clicked
+btn.onclick = reset;
+
 let radios = document.querySelectorAll("input[type='radio']");
 
 for (let i = 0; i < radios.length; i++){
@@ -120,10 +129,11 @@ for (let i = 0; i < radios.length; i++){
     })
 }
 
-let numbers = document.querySelectorAll("input[type='number']");
+let numbers = document.querySelectorAll("input[type='text']");
 
 for (let i = 0; i < numbers.length; i++){
     numbers[i].addEventListener("input", function() {
         calculate();
     })
 }
+
