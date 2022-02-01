@@ -1,7 +1,18 @@
+let btn = document.querySelector(".btn");
+let bill,
+    numPeople,
+    tip,
+    tipPerson,
+    totalPerson;
+
 // Uncheck radio button when custom input is clicked
 
 function uncheck(){
-    let radios = document.querySelectorAll("input[name='percent']")
+    let radios = document.querySelectorAll("input[name='percent']");
+    if (!document.querySelector("#custom").value){
+        tip = 0;
+        buttonState();
+    }
     radios.forEach(element => {
         element.checked = false;
     });
@@ -13,9 +24,8 @@ function radioChoosen(){
     document.getElementById("custom").value = "";
 }
 
-function buttonState(tip, bill, people){
-    let btn = document.querySelector(".btn");
-    isInput = () => Boolean(!tip && !bill && !people);
+function buttonState(){
+    isInput = () => Boolean(!tip && !bill && !numPeople);
 
     if(isInput()){
         btn.disabled = true;
@@ -40,6 +50,16 @@ function percentage(){
         }
     }
 }
+
+//Reset all values when button i clicked
+btn.onclick = function() {
+    document.querySelector("#bill").value = "";
+    document.querySelector("#people").value = "";
+    radioChoosen();
+    uncheck();
+    calculate();
+}
+
 
 // Validate the input for Bill || People
 // If valid return the input
@@ -72,13 +92,15 @@ function validateInput(numInput, errorContainer) {
 // Calculate and display results
 
 function calculate(){
-    let bill = validateInput(document.querySelector("#bill"), document.querySelector(".bill-error")),
-        numPeople = validateInput(document.querySelector("#people"), document.querySelector(".people-error")),
-        tip = percentage(),
-        tipPerson = (bill * tip) / numPeople,
-        totalPerson = bill / numPeople + tipPerson;
+    
+    bill = validateInput(document.querySelector("#bill"), document.querySelector(".bill-error")),
+    numPeople = validateInput(document.querySelector("#people"), document.querySelector(".people-error")),
+    tip = percentage();
+    
+    let tipPerson = (bill * tip) / numPeople;
+    let totalPerson = bill / numPeople + tipPerson;
 
-    buttonState(tip, bill, numPeople);
+    buttonState();
 
     if(tipPerson === Infinity || isNaN(tipPerson)){
         document.querySelector("#tipPerson").innerHTML = "$0.00";
