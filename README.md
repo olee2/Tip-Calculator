@@ -40,3 +40,14 @@ Users should be able to:
 
 ### What I learned
 
+This is my second project using JS and was the domain where I learned the most. 
+
+Some challenges that has resulted in new knowledge: 
+
+- Getting the calculations to be done continuously when input is given
+- Handling different kinds of input that could mess with the calculations (i.e. non numbers)
+- Handling the tip buttons vs the custom input, making sure not both are chosen simultaneously (uncheck() && radioChosen() && percentage() functions)
+- Handling the reset button
+
+In general my understanding of JS's role in web development has increased with this project. Nothing revolutionary in terms of what I have made, but
+my tree of knowledge has certantly made some new branches.

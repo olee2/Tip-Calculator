@@ -110,15 +110,17 @@ function calculate(){
     }
 }
 
-function reset() {
+//Reset all values when reset button is clicked
+
+btn.onclick = () => {
     document.querySelector("#bill").value = "";
     document.querySelector("#people").value = "";
     radioChoosen();
     uncheck();
     calculate();
-}
-//Reset all values when reset button is clicked
-btn.onclick = reset;
+};
+
+// Loops to add evenlisteners
 
 let radios = document.querySelectorAll("input[type='radio']");
 

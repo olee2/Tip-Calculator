@@ -168,10 +168,18 @@ input[type="radio"]:checked+label {
   color: var(--clr-dark-cyan)
 }
 
+input[type="radio"] + label:hover{
+  background-color: var(--clr-strong-cyan);
+}
+
 input, .tip{
   height: 3em;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 4px;
+}
+
+.number:hover{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .number:focus{
@@ -231,10 +239,23 @@ input, .tip{
   cursor: pointer;
 }
 
+.btn:hover{
+  background-color: var(--clr-dark-cyan);
+  border: solid 1px var(--clr-strong-cyan);
+  color: var(--clr-strong-cyan);
+}
+
 .btn-disabled{
   background-color: hsl(183, 100%, 22%);
   color: hsl(183, 100%, 15%);
   cursor:not-allowed;
+}
+
+.btn-disabled:hover{
+  background-color: hsl(183, 100%, 22%);
+  color: hsl(183, 100%, 15%);
+  cursor:not-allowed;
+  border: none;
 }
 
 .error{
